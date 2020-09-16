@@ -50,3 +50,28 @@ body{
 button{
     cursor: pointer;
 }
+
+
+body {
+    background-color: white;
+}
+
+
+button {
+    border: 0;
+}
+
+#logoDiv{
+    text-align: center;
+}
+
+#loginPage {
+    padding: 1rem;
+}
+
+#loginPage>button {
+    padding: 0.3rem 4rem;
+    font-size: 18px;
+    background-color: #FF3D00;
+    color: white;
+}

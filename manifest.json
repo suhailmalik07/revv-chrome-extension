@@ -4,7 +4,14 @@
     "browser_action": {
         "default_popup": "HTML/index.html"
     },
+    "background": {
+        "scripts": [
+            "JS/background.js"
+        ]
+    },
     "permissions": [
+        "storage",
+        "https://api.revvsales.com/api/*",
         "storage"
     ],
     "description": "Build an Extension!",
