@@ -1,0 +1,52 @@
+body{
+    width: 450px; 
+    height: 500px; 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#heading{
+    text-align: center;
+}
+#recent{
+    margin-bottom: 0px;
+}
+#box{
+    padding: 0px 15px;
+}
+#box > hr{
+    height: 1px;
+    background-color: #ccc;
+    border: none;
+}
+#recent-table{
+    width: 100%;
+    border-collapse:separate; 
+    border-spacing:0 15px; 
+}
+.recent-list{
+    margin: 40px;
+}
+#recent-list{
+    width: 100%;
+}
+.recent-items{
+    height: 60px;
+    background-color: wheat;
+    text-align: center;
+}
+.recent-items button{
+    vertical-align: middle;
+    display: none;
+    background: none;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+.recent-items:hover{
+    background-color: rgb(241, 231, 211);
+}
+.recent-items:hover button{
+    display: inline-block;
+}
+button{
+    cursor: pointer;
+}
