@@ -6,10 +6,32 @@ recentData.map(()=>{
     recentList.className = 'recent-list'
     recentList.innerHTML = 
     `<td class='recent-items'>
-        <button>Button</button>
+        <button>For Something</button>
+        <button class='activities'>Activities</button>
     </td>`
     recentTable.append(recentList)
 })
+
+const toggleRecentActiv = () => {
+    const recent = document.getElementById('recent')
+    const activity = document.getElementById('activity')
+
+    const recentDisplay = recent.style.display === 'none' ? 'inline':'none'
+    recent.style.display = recentDisplay
+
+    const activityDisplay = activity.style.display === 'none' ? 'inline':'none'
+    activity.style.display = activityDisplay
+
+}
+
+document.getElementById('activityBack').addEventListener('click',toggleRecentActiv)
+
+const activityButton = document.getElementsByClassName('activities')
+for(let i = 0; i < activityButton.length; i++){
+    activityButton[i].addEventListener('click',toggleRecentActiv)
+}
+
+
 // const btn = document.getElementById("loginBtn")
 // const root = document.getElementById("root")
 // let user = {}

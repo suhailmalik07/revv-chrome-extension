@@ -31,6 +31,7 @@ body{
 .recent-items{
     height: 60px;
     background-color: wheat;
+    border-radius: 35px;
     text-align: center;
 }
 .recent-items button{
@@ -50,12 +51,6 @@ body{
 button{
     cursor: pointer;
 }
-
-
-body {
-    background-color: white;
-}
-
 
 button {
     border: 0;
