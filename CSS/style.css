@@ -48,11 +48,20 @@ body{
 .recent-items:hover button{
     display: inline-block;
 }
-button{
-    cursor: pointer;
+
+#goToRecent{
+    margin-bottom: 0px; 
+    background-color: wheat; 
+    padding: 10px;
 }
 
-button {
+#goToActivity{
+    margin-bottom: 0px;
+    padding: 10px;
+}
+
+button,#goToRecent,#goToActivity{
+    cursor: pointer;
     border: 0;
 }
 

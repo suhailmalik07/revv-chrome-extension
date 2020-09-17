@@ -7,30 +7,29 @@ recentData.map(()=>{
     recentList.innerHTML = 
     `<td class='recent-items'>
         <button>For Something</button>
-        <button class='activities'>Activities</button>
     </td>`
     recentTable.append(recentList)
 })
 
-const toggleRecentActiv = () => {
-    const recent = document.getElementById('recent')
-    const activity = document.getElementById('activity')
-
-    const recentDisplay = recent.style.display === 'none' ? 'inline':'none'
-    recent.style.display = recentDisplay
-
-    const activityDisplay = activity.style.display === 'none' ? 'inline':'none'
-    activity.style.display = activityDisplay
-
+const toggleToActivity = () => {
+    document.getElementById('activity').style.display = 'inline'
+    document.getElementById('recent').style.display = 'none'
+    document.getElementById('goToActivity').style.background = 'wheat'
+    document.getElementById('goToRecent').style.background = 'none'
 }
 
-document.getElementById('activityBack').addEventListener('click',toggleRecentActiv)
-
-const activityButton = document.getElementsByClassName('activities')
-for(let i = 0; i < activityButton.length; i++){
-    activityButton[i].addEventListener('click',toggleRecentActiv)
+const toggleToRecent = () => {
+    document.getElementById('activity').style.display = 'none'
+    document.getElementById('recent').style.display = 'inline'
+    document.getElementById('goToRecent').style.background = 'wheat'
+    document.getElementById('goToActivity').style.background = 'none'
 }
 
+const goToActivity = document.getElementById('goToActivity')
+goToActivity.addEventListener('click',toggleToActivity)
+
+const goToRecent = document.getElementById('goToRecent')
+goToRecent.addEventListener('click',toggleToRecent)
 
 // const btn = document.getElementById("loginBtn")
 // const root = document.getElementById("root")

@@ -12,26 +12,23 @@
     <div id='main'>
         <h1 style="text-align: center;" >REVV SALES</h1>
 
-        <div id='recent'>
-            <div id='box'>
-                <h2 style="margin-bottom: 0px;">Recent</h2>
-                <hr/>
-                <div>
-                    <table id='recent-table'></table>
-                </div>
+        <div id='box'>
+            <div style="display: flex;">
+                <h2 id="goToRecent">Recent</h2>
+                <h2 id="goToActivity">Activities</h2>
             </div>
+            <hr/>
+
+            <div id="recent">
+                <table id='recent-table'></table>
+            </div>
+
+            <div style="display: none;" id='activity'>
+                <table id="activity-table"></table>
+            </div>
+
         </div>
         
-        <div style="display: none;" id='activity'>
-            <div id='box'>
-                <button id='activityBack'>Back</button>
-                <h2 style="margin-bottom: 0px;">Activities</h2>
-                <hr/>
-                <div>
-                    
-                </div>
-            </div>
-        </div>
 
 
     </div>
