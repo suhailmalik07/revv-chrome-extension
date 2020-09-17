@@ -12,17 +12,24 @@ function saveData(payload) {
 
 
         chrome.storage.local.set({ "docs": documentsArr })
+        console.log(documentsArr)
     })
 }
 
-const t = setInterval(() => {
-    if (document.querySelector(".quotedetails-docname")) {
-        clearInterval(t)
-        const url = location.href.split("/")
-        const docId = url[url.length - 1]
-        const docName = document.querySelector(".quotedetails-docname").textContent
-        const payload = { url: location.href, docId, docName }
-        console.log(payload)
-        saveData(payload)
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message.action == 'SendIt') {
+        const t = setInterval(() => {
+            if (document.querySelector(".quotedetails-docname")) {
+                clearInterval(t)
+                const url = location.href.split("/")
+                const docId = url[url.length - 1]
+                const docName = document.querySelector(".quotedetails-docname").textContent
+                const payload = { url: location.href, docId, docName }
+                console.log(payload)
+                saveData(payload)
+            }
+        }, 1000)
+
     }
-}, 1000)
+});
