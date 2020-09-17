@@ -23,23 +23,6 @@ const getActivities = () => {
 }
 
 
-function handleClickOnRecent(e) {
-  const { name, id } = e.target
-  if (name == "gen_parmaLink" && id) {
-    fetch("https://api.revvsales.com/api/perma-link", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'AccessToken': 'access_token'
-      },
-      body: {
-        "object_id": id,
-        "object_type": "DOC"
-      }
-    })
-  }
-}
-
 const toggleToActivity = () => {
   document.getElementById("activity").style.display = "inline";
   document.getElementById("recent").style.display = "none";
