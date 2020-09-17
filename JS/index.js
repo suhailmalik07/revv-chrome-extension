@@ -177,6 +177,22 @@ goToRecent.addEventListener("click", toggleToRecent);
 // document.addEventListener("DOMContentLoaded", function () {
 //     renderDOM()
 // })
+tivities
+￼	
+Cold Force￼
+Congrats! You created a new document successfully
+2020-09-17, 8:18 PM
+￼	
+Cold Force￼
+Congrats! You created a new document successfully
+2020-09-17, 8:15 PM
+￼	
+Omkarnath Parida￼
+Omkarnath Parida received the email & document for acceptance
+2020-09-17, 7:54 PM
+￼	
+Cold Force￼
+Document sent for acceptance to Omkarnath Parida
 
 // function renderDOM() {
 //     loadData()

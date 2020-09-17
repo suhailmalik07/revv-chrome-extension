@@ -36,7 +36,7 @@ function getActivities() {
             const objectIdsTmp = promises.map(item => item.Document)
             updateDocs(objectIdsTmp)
 
-            const objectIds = objectIdsTmp.map(item => fetchApi(`https://api.revvsales.com/api/object-activities/objects/${item}`))
+            const objectIds = objectIdsTmp.map(item => item.object_id).map(item => fetchApi(`https://api.revvsales.com/api/object-activities/objects/${item}`))
 
             const Activities = await Promise.all(objectIds)
             let arr = []
