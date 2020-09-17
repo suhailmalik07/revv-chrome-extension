@@ -1,59 +1,67 @@
-const recentTable = document.getElementById('recent-table')
-const recentData = [0, 1, 2, 3, 4];
+const getDocs = () => {
+  chrome.storage.local.get("docs", (data) => {
+    const { docs } = data;
+    displayData(docs);
+    return docs;
+  });
+};
+window.addEventListener("load", getDocs);
 
-recentData.map(() => {
-    const recentList = document.createElement('tr')
-    recentList.className = 'recent-list'
-    recentList.innerHTML =
-        `<td class='recent-items'>
-        <button>For Something</button>
-    </td>`
-    recentTable.append(recentList)
-})
+const recentTable = document.getElementById("recent-table");
+
+const displayData = (docs) => {
+  console.log(docs);
+  docs.map((e, i) => {
+    const recentList = document.createElement("tr");
+    recentList.className = "recent-list";
+    recentList.innerHTML = `<td class='recent-items'>
+                <img src='../Resources/document.png' alt='document'/>
+            </td>
+            <td>
+                <div class='docName'>
+                    <b>${e.docName}</b>
+                </div>
+
+                <div>
+                    <i>Doc No: ${e.docId}</i>
+                </div>
+
+            </td>
+            <td>
+                <a target='_blank' href=${e.url}><button>Review Document</button></a>
+            </td>
+            `;
+    recentTable.append(recentList);
+  });
+};
 
 const toggleToActivity = () => {
-    document.getElementById('activity').style.display = 'inline'
-    document.getElementById('recent').style.display = 'none'
-    document.getElementById('goToActivity').style.background = 'wheat'
-    document.getElementById('goToRecent').style.background = 'none'
-}
+  document.getElementById("activity").style.display = "inline";
+  document.getElementById("recent").style.display = "none";
+  document.getElementById("goToActivity").style.background = "wheat";
+  document.getElementById("goToRecent").style.background = "none";
+};
 
 const toggleToRecent = () => {
-    document.getElementById('activity').style.display = 'none'
-    document.getElementById('recent').style.display = 'inline'
-    document.getElementById('goToRecent').style.background = 'wheat'
-    document.getElementById('goToActivity').style.background = 'none'
-    getDocs()
-}
+  document.getElementById("activity").style.display = "none";
+  document.getElementById("recent").style.display = "inline";
+  document.getElementById("goToRecent").style.background = "wheat";
+  document.getElementById("goToActivity").style.background = "none";
+};
 
-const displayData = docs => {
-    console.log(docs)
-}
+const goToActivity = document.getElementById("goToActivity");
+goToActivity.addEventListener("click", toggleToActivity);
 
-const goToActivity = document.getElementById('goToActivity')
-goToActivity.addEventListener('click',toggleToActivity)
-
-const goToRecent = document.getElementById('goToRecent')
-goToRecent.addEventListener('click',toggleToRecent)
-
-
-const getDocs =  () => {
-     chrome.storage.local.get("docs", (data) => {
-        const { docs } = data
-        displayData(docs)
-        return docs
-    })
-}
+const goToRecent = document.getElementById("goToRecent");
+goToRecent.addEventListener("click", toggleToRecent);
 
 // const btn = document.getElementById("loginBtn")
 // const root = document.getElementById("root")
 // let user = {}
 
-
 // document.addEventListener("DOMContentLoaded", function () {
 //     renderDOM()
 // })
-
 
 // function renderDOM() {
 //     loadData()
@@ -71,7 +79,6 @@ const getDocs =  () => {
 // function renderApp() {
 //     root.innerHTML = user
 // }
-
 
 // function loadForm() {
 //     root.innerHTML = `<form id="loginForm">
@@ -109,7 +116,6 @@ const getDocs =  () => {
 //     renderDOM()
 // }
 
-
 // const postData = async (url = "", data = {}) => {
 //     try {
 //         const response = await fetch(url, {
@@ -128,4 +134,3 @@ const getDocs =  () => {
 //         console.log(err)
 //     }
 // }
-

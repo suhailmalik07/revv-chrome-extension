@@ -24,31 +24,34 @@ body{
 }
 .recent-list{
     margin: 40px;
-}
-#recent-list{
     width: 100%;
-}
-.recent-items{
-    height: 60px;
     background-color: wheat;
     border-radius: 35px;
-    text-align: center;
 }
-.recent-items button{
+.recent-list img{
+    width: 40px;
     vertical-align: middle;
-    display: none;
+}
+.recent-list button{
+    visibility: hidden;
     background: none;
     border: 1px solid black;
     border-radius: 3px;
     padding: 5px 10px;
 }
-.recent-items:hover{
-    background-color: rgb(241, 231, 211);
+.recent-list i{
+    color: rgb(47, 165, 0);
 }
-.recent-items:hover button{
-    display: inline-block;
+.recent-list:hover{
+    opacity: 0.8;
 }
-
+.recent-list:hover button{
+    visibility: visible;
+}
+.recent-items{
+    height: 60px;
+    text-align: center;
+}
 #goToRecent{
     margin-bottom: 0px; 
     background-color: wheat; 
