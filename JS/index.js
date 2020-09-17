@@ -23,6 +23,11 @@ const toggleToRecent = () => {
     document.getElementById('recent').style.display = 'inline'
     document.getElementById('goToRecent').style.background = 'wheat'
     document.getElementById('goToActivity').style.background = 'none'
+    getDocs()
+}
+
+const displayData = docs => {
+    console.log(docs)
 }
 
 const goToActivity = document.getElementById('goToActivity')
@@ -32,9 +37,10 @@ const goToRecent = document.getElementById('goToRecent')
 goToRecent.addEventListener('click',toggleToRecent)
 
 
-const getDocs = async () => {
-    await chrome.storage.local.get("docs", (data) => {
+const getDocs =  () => {
+     chrome.storage.local.get("docs", (data) => {
         const { docs } = data
+        displayData(docs)
         return docs
     })
 }
