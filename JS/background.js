@@ -32,7 +32,11 @@ function getActivities() {
             const { page } = await fetchApi("https://api.revvsales.com/api/folders/?page_num=1&sort_by_doc_num=true")
             const allDocs = page.inodes.filter(item => item.type === "f").map(item => item.doc_no).map(item => fetchApi(`https://api.revvsales.com/api/documents/${item}?after=${lastTime}&limit=40`))
             const promises = await Promise.all(allDocs)
-            const objectIds = promises.map(item => item.Document.object_id).map(item => fetchApi(`https://api.revvsales.com/api/object-activities/objects/${item}`))
+
+            const objectIdsTmp = promises.map(item => item.Document)
+            updateDocs(objectIdsTmp)
+
+            const objectIds = objectIdsTmp.map(item => fetchApi(`https://api.revvsales.com/api/object-activities/objects/${item}`))
 
             const Activities = await Promise.all(objectIds)
             let arr = []
@@ -75,6 +79,19 @@ function setNotification(count) {
     count > 0
         ? chrome.browserAction.setBadgeText({ text: `${count}` })
         : chrome.browserAction.setBadgeText({ text: `` })
+}
+
+
+function updateDocs(data) {
+    console.log(data)
+    chrome.storage.local.get("docs", (d) => {
+        let docs = []
+        if (d?.docs) {
+            docs = d.docs
+        }
+        docs = docs.map(item => ({ ...item, ...data.find(i => i["doc_no"] == item.docId) }))
+        chrome.storage.local.set({ "docs": docs })
+    })
 }
 
 getActivities()
