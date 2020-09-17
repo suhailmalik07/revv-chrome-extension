@@ -137,7 +137,7 @@ const displayData = (docs) => {
             <td class='recent-dir'>
                 <button>Generate Link</button>
                 <div>
-                    Directory: ${e.dir ? e.dir : "/"}
+                    Directory: ${e.path}
                 </div>
             </td>
             `;
