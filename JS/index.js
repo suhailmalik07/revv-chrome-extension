@@ -20,15 +20,92 @@ const getActivities = () => {
 }
 
 window.addEventListener("load", () => {
-  getDocs()
-  getActivities()
+  getDocs();
+  getActivities();
 });
 
-const recentTable = document.getElementById("recent-table");
+const findCurrentTime = (timestamp) => {
+  var d = new Date(timestamp * 1000),
+    yyyy = d.getFullYear(),
+    mm = ("0" + (d.getMonth() + 1)).slice(-2),
+    dd = ("0" + d.getDate()).slice(-2),
+    hh = d.getHours(),
+    h = hh,
+    min = ("0" + d.getMinutes()).slice(-2),
+    ampm = "AM",
+    time;
+  if (hh > 12) {
+    h = hh - 12;
+    ampm = "PM";
+  } else if (hh === 12) {
+    h = 12;
+    ampm = "PM";
+  } else if (hh == 0) {
+    h = 12;
+  }
+  time = yyyy + "-" + mm + "-" + dd + ", " + h + ":" + min + " " + ampm;
+  return time;
+};
+
+const displayActivity = (data) => {
+  const activityTable = document.getElementById("activity-table");
+  data.map((e) => {
+    const activityList = document.createElement("tr");
+    activityList.className = "activity-list";
+    switch (e.event) {
+      case "ACCEPTANCE_EMAIL_DELIVERED":
+        var timestamp = Math.round(Date.parse(e.timestamp) / 1000);
+        activityList.innerHTML = `<td>
+                    <img src='../Resources/activity.png' alt='document'/>
+                </td>
+                <td>
+                    <div><b>${e.actor.name}</b><img src=${
+          e.actor.image_url
+        } alt='profile_img'/></div>
+                    <a href="mailto:${e.actor.user_email}">
+                        <div>${e.actor.user_email}</div>
+                    </a>
+                    <div><b>${
+                      e.actor.name
+                    }</b> received the email & document for acceptance</div>
+                    <br/>
+                    <div><i>${findCurrentTime(timestamp)}</i></div>
+                </td>
+                `;
+        break;
+        case "DOCUMENT_SENT_FOR_ACCEPT":
+        var timestamp = Math.round(Date.parse(e.timestamp) / 1000);
+        let arr = []
+        e.subjects.map(ele=>{
+            arr.push(ele.name)
+        })
+        activityList.innerHTML = `<td>
+                    <img src='../Resources/activity.png' alt='document'/>
+                </td>
+                <td>
+                    <div><b>${e.actor.name}</b><img src=${
+          e.actor.image_url
+        } alt='profile_img'/></div>
+                    <a href="mailto:${e.actor.user_email}">
+                        <div>${e.actor.user_email}</div>
+                    </a>
+                    <div>Document sent for acceptanceto <b>${arr.join(', ')}</b></div>
+                    <br/>
+                    <div><i>${findCurrentTime(timestamp)}</i></div>
+                </td>
+                `;
+        break;
+        default:
+            activityList.innerHTML = `Something Happened magically!`
+    }
+    activityTable.append(activityList);
+  });
+};
 
 const displayData = (docs) => {
+  const recentTable = document.getElementById("recent-table");
   console.log(docs);
-  docs.map((e, i) => {
+  docs.map((e) => {
     const recentList = document.createElement("tr");
     recentList.className = "recent-list";
     recentList.innerHTML = `<td class='recent-items'>
@@ -51,7 +128,11 @@ const displayData = (docs) => {
             <td class='recent-dir'>
                 <button>Generate Link</button>
                 <div>
+<<<<<<< HEAD
+                    Directory: ${e.dir ? e.dir : "/"}
+=======
                     Directory: ${e.dir ? e.dir : '/'}
+>>>>>>> a9b8671b448891c489e5d81f78eef261d329a2e7
                 </div>
             </td>
             `;
