@@ -34,8 +34,12 @@ body{
 #recent-table, #activity-table{
     width: 100%;
     border-collapse:separate; 
-    border-spacing:0 15px; 
-    /* overflow-y: scroll; */
+    border-spacing:0 15px;     
+}
+#activity-table{
+    height: 400px;
+    overflow-y: scroll;
+    display: block;
 }
 .recent-list, .activity-list{
     margin: 40px;

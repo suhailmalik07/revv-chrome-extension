@@ -62,9 +62,6 @@ const displayActivity = (data) => {
                     <div><b>${e.actor.name}</b><img src=${
           e.actor.image_url
         } alt='profile_img'/></div>
-                    <a href="mailto:${e.actor.user_email}">
-                        <div>${e.actor.user_email}</div>
-                    </a>
                     <div><b>${
                       e.actor.name
                     }</b> received the email & document for acceptance</div>
@@ -86,17 +83,17 @@ const displayActivity = (data) => {
                     <div><b>${e.actor.name}</b><img src=${
           e.actor.image_url
         } alt='profile_img'/></div>
-                    <a href="mailto:${e.actor.user_email}">
-                        <div>${e.actor.user_email}</div>
-                    </a>
-                    <div>Document sent for acceptanceto <b>${arr.join(', ')}</b></div>
+                    <div>Document sent for acceptance to <b>${arr.join(', ')}</b></div>
                     <br/>
                     <div><i>${findCurrentTime(timestamp)}</i></div>
                 </td>
                 `;
         break;
         default:
-            activityList.innerHTML = `Something Happened magically!`
+            activityList.innerHTML = `<td>
+            <img src='../Resources/activity.png' alt='document'/>
+        </td>
+        <td>Something Happened magically!</td>`
     }
     activityTable.append(activityList);
   });
