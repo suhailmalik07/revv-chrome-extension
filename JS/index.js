@@ -28,7 +28,14 @@ const displayData = (docs) => {
 
             </td>
             <td>
-                <a target='_blank' href=${e.url}><button>Review Document</button></a>
+                <a target='_blank' href=${e.url}><button>Open</button></a>
+            </td>            
+            
+            <td class='recent-dir'>
+                <button>Generate Link</button>
+                <div>
+                    Directory: ${e.dir?e.dir:'/'}
+                </div>
             </td>
             `;
     recentTable.append(recentList);
@@ -39,14 +46,18 @@ const toggleToActivity = () => {
   document.getElementById("activity").style.display = "inline";
   document.getElementById("recent").style.display = "none";
   document.getElementById("goToActivity").style.background = "wheat";
+  document.getElementById("goToActivity").style.color = "black";
   document.getElementById("goToRecent").style.background = "none";
+  document.getElementById("goToRecent").style.color = "white";
 };
 
 const toggleToRecent = () => {
   document.getElementById("activity").style.display = "none";
   document.getElementById("recent").style.display = "inline";
   document.getElementById("goToRecent").style.background = "wheat";
+  document.getElementById("goToRecent").style.color = "black";
   document.getElementById("goToActivity").style.background = "none";
+  document.getElementById("goToActivity").style.color = "white";
 };
 
 const goToActivity = document.getElementById("goToActivity");
