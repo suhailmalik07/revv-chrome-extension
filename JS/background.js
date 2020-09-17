@@ -1,5 +1,8 @@
-// chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-//     let url = tabs[0].url;
-//     alert("ehy") 
-//     // use `url` here inside the callback because it's asynchronous!
-// });
+chrome.storage.local.get(["user", "docs"], (data) => {
+    const { user } = data
+    getActivities(user)
+})
+
+const getActivities = (user) => {
+    console.log(user)
+}

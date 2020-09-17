@@ -32,12 +32,15 @@ for (let i = 0; i < activityButton.length; i++) {
 }
 
 
-const getDocs = async () => {
-    await chrome.storage.local.get("docs", (data) => {
+const getDocs = () => {
+    chrome.storage.local.get("docs", (data) => {
         const { docs } = data
+        console.log(docs)
         return docs
     })
 }
+
+getDocs()
 
 
 // const btn = document.getElementById("loginBtn")
