@@ -16,25 +16,41 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
 
 
 // fetch activites
-async function getActivities() {
-    let data = []
-    try {
-        const { page } = await fetchApi("https://api.revvsales.com/api/folders/?page_num=1&sort_by_doc_num=true")
-        const allDocs = page.inodes.filter(item => item.type === "f").map(item => item.doc_no).map(item => fetchApi(`https://api.revvsales.com/api/documents/${item}`))
-        const promises = await Promise.all(allDocs)
-        const objectIds = promises.map(item => item.Document.object_id).map(item => fetchApi(`https://api.revvsales.com/api/object-activities/objects/${item}`))
+function getActivities() {
+    chrome.storage.local.get("activities", async (data) => {
+        console.log("fetching activities", data)
+        let activities = []
+        if (data?.activities) {
+            activities = data.activities
+        }
 
+        setNotification(activities.filter(item => !item.status).length)
 
-        const Activities = await Promise.all(objectIds)
-        Activities.forEach(act => {
-            data.push(...act)
-        })
-        data = data.filter(item => item.event !== "DOCUMENT_OPENED").sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
-        chrome.storage.local.set({ "activities": data })
+        const lastTime = activities[0]?.timestamp || "2006-01-02T15:04:05.000000Z"
 
-    } catch (err) {
-        console.log(err)
-    }
+        try {
+            const { page } = await fetchApi("https://api.revvsales.com/api/folders/?page_num=1&sort_by_doc_num=true")
+            const allDocs = page.inodes.filter(item => item.type === "f").map(item => item.doc_no).map(item => fetchApi(`https://api.revvsales.com/api/documents/${item}?after=${lastTime}&limit=40`))
+            const promises = await Promise.all(allDocs)
+            const objectIds = promises.map(item => item.Document.object_id).map(item => fetchApi(`https://api.revvsales.com/api/object-activities/objects/${item}`))
+
+            const Activities = await Promise.all(objectIds)
+            let arr = []
+            Activities.forEach(act => {
+                arr.push(...act)
+            })
+
+            arr = arr.filter(item => item.event !== "DOCUMENT_OPENED" && new Date(item.timestamp) > new Date(lastTime)).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+            activities.unshift(...arr)
+
+            chrome.storage.local.set({ "activities": activities })
+            setNotification(activities.filter(item => !item.status).length)
+
+        } catch (err) {
+            console.log(err)
+        }
+    })
+
 }
 
 
@@ -51,4 +67,16 @@ async function fetchApi(url) {
         .catch(err => console.log(err))
 }
 
+
+function setNotification(count) {
+    // set notification icon
+    chrome.browserAction.setBadgeBackgroundColor({ color: [190, 190, 190, 230] });
+    count > 0
+        ? chrome.browserAction.setBadgeText({ text: `${count}` })
+        : chrome.browserAction.setBadgeText({ text: `` })
+}
+
 getActivities()
+setInterval(() => {
+    getActivities()
+}, 60000)

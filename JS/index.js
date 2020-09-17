@@ -8,11 +8,16 @@ const getDocs = () => {
 
 const getActivities = () => {
   chrome.storage.local.get("activities", (data) => {
-    const { activities } = data;
-    displayActivity(activities);
-    console.log(activities);
-  });
-};
+    const activities = data.activities.map(item => ({ ...item, status: true }))
+    // set notification
+    chrome.storage.local.set({ "activities": activities })
+    // set notification icon
+    setNotification(0)
+
+
+    console.log(activities)
+  })
+}
 
 window.addEventListener("load", () => {
   getDocs();
@@ -123,7 +128,11 @@ const displayData = (docs) => {
             <td class='recent-dir'>
                 <button>Generate Link</button>
                 <div>
+<<<<<<< HEAD
                     Directory: ${e.dir ? e.dir : "/"}
+=======
+                    Directory: ${e.dir ? e.dir : '/'}
+>>>>>>> a9b8671b448891c489e5d81f78eef261d329a2e7
                 </div>
             </td>
             `;
@@ -148,6 +157,7 @@ const toggleToRecent = () => {
   document.getElementById("goToActivity").style.background = "none";
   document.getElementById("goToActivity").style.color = "white";
 };
+
 
 const goToActivity = document.getElementById("goToActivity");
 goToActivity.addEventListener("click", toggleToActivity);
@@ -234,3 +244,12 @@ goToRecent.addEventListener("click", toggleToRecent);
 //         console.log(err)
 //     }
 // }
+
+
+function setNotification(count) {
+  // set notification icon
+  chrome.browserAction.setBadgeBackgroundColor({ color: [190, 190, 190, 230] });
+  count > 0
+    ? chrome.browserAction.setBadgeText({ text: `${count}` })
+    : chrome.browserAction.setBadgeText({ text: `` })
+}
