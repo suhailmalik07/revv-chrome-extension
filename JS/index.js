@@ -1,11 +1,11 @@
 const recentTable = document.getElementById('recent-table')
-const recentData = [0,1,2,3,4];
+const recentData = [0, 1, 2, 3, 4];
 
-recentData.map(()=>{
+recentData.map(() => {
     const recentList = document.createElement('tr')
     recentList.className = 'recent-list'
-    recentList.innerHTML = 
-    `<td class='recent-items'>
+    recentList.innerHTML =
+        `<td class='recent-items'>
         <button>For Something</button>
     </td>`
     recentTable.append(recentList)
@@ -30,6 +30,14 @@ goToActivity.addEventListener('click',toggleToActivity)
 
 const goToRecent = document.getElementById('goToRecent')
 goToRecent.addEventListener('click',toggleToRecent)
+
+
+const getDocs = async () => {
+    await chrome.storage.local.get("docs", (data) => {
+        const { docs } = data
+        return docs
+    })
+}
 
 // const btn = document.getElementById("loginBtn")
 // const root = document.getElementById("root")
