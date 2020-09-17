@@ -5,7 +5,18 @@ const getDocs = () => {
     return docs;
   });
 };
-window.addEventListener("load", getDocs);
+
+const getActivities = () => {
+  chrome.storage.local.get("activities", (data) => {
+    const { activities } = data
+    console.log(activities)
+  })
+}
+
+window.addEventListener("load", () => {
+  getDocs()
+  getActivities()
+});
 
 const recentTable = document.getElementById("recent-table");
 
