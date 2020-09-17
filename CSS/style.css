@@ -1,113 +1,134 @@
-body{
-    width: 450px; 
-    height: 550px; 
+body {
+    width: 450px;
+    height: 550px;
     background-color: black;
     color: white;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-#heading{
+
+#heading {
     text-align: center;
 }
-#create-clone-document{
+
+#create-clone-document {
     text-align: center;
 }
-#create-clone-document button{
+
+#create-clone-document button {
     background-color: rgb(64, 146, 64);
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
 }
-#create-clone-document button:hover{
+
+#create-clone-document button:hover {
     background-color: rgb(41, 116, 41);
 }
-#recent{
+
+#recent {
     margin-bottom: 0px;
 }
-#box{
+
+#box {
     padding: 0px 15px;
 }
-#box > hr{
+
+#box>hr {
     height: 1px;
     background-color: #ccc;
     border: none;
 }
-#recent-table, #activity-table{
+
+#recent-table, #activity-table {
     width: 100%;
-    border-collapse:separate; 
-    border-spacing:0 15px;     
+    border-collapse: separate;
+    border-spacing: 0 15px;
 }
-#activity-table{
+
+#activity-table {
     height: 400px;
     overflow-y: auto;
     display: block;
 }
-.recent-list, .activity-list{
+
+.recent-list, .activity-list {
     margin: 40px;
     width: 100%;
     background-color: wheat;
     color: black;
 }
-.recent-list img, .activity-list img{
+
+.recent-list img, .activity-list img {
     width: 40px;
     vertical-align: middle;
 }
-.recent-list button{
+
+.recent-list button {
     visibility: hidden;
     background: none;
     border: 1px solid black;
     border-radius: 3px;
     padding: 5px 10px;
 }
-.recent-list i, .activity-list i{
+
+.recent-list i, .activity-list i {
     color: rgb(47, 165, 0);
 }
-.recent-list:hover, .activity-list:hover{
+
+.recent-list:hover, .activity-list:hover {
     opacity: 0.8;
 }
-.recent-list:hover button{
+
+.recent-list:hover button {
     visibility: visible;
 }
-.recent-items{
+
+.recent-items {
     height: 60px;
     text-align: center;
 }
-.recent-dir{
+
+.recent-dir {
     color: rgb(158, 158, 158);
     vertical-align: bottom;
     position: relative;
 }
-.recent-dir button{
+
+.recent-dir button {
     margin-bottom: 17px;
 }
-.recent-dir div{
+
+.recent-dir div {
     position: absolute;
     top: 43px;
     right: 5px;
 }
-.activity-list div img{
+
+.activity-list div img {
     border-radius: 50%;
     padding: 5px;
     width: 20px;
 }
-#goToRecent{
-    margin-bottom: 0px; 
+
+#goToRecent {
+    margin-bottom: 0px;
     background-color: wheat;
     color: black;
     padding: 10px;
 }
 
-#goToActivity{
+#goToActivity {
     margin-bottom: 0px;
     padding: 10px;
 }
 
-button,#goToRecent,#goToActivity{
+button, #goToRecent, #goToActivity {
     cursor: pointer;
     border: 0;
     outline: none;
 }
 
-#logoDiv{
+#logoDiv {
     text-align: center;
 }
 
@@ -120,4 +141,28 @@ button,#goToRecent,#goToActivity{
     font-size: 18px;
     background-color: #FF3D00;
     color: white;
+}
+
+#message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 480px;
+    height: 600px;
+    animation: fadeIt 1s ease-in;
+}
+
+@keyframes fadeIt {
+    0% {
+        background-color: rgba(128, 128, 128, 0.5);
+    }
+    50% {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    100% {
+        background-color: rgba(128, 128, 128, 0.5);
+    }
 }

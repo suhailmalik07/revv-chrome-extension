@@ -88,7 +88,7 @@ const displayData = (docs) => {
     docs.map((e) => {
         const recentList = document.createElement("tr");
         recentList.className = "recent-list";
-        recentList.innerHTML = `<td class='recent-items'>
+        let a = `<td class='recent-items'>
                   <img src='../Resources/document.png' alt='document'/>
               </td>
               <td>
@@ -105,13 +105,17 @@ const displayData = (docs) => {
                   <a target='_blank' href=${e.url}><button>Open</button></a>
               </td>            
               
-              <td class='recent-dir'>
-                  <button name="gen_parmaLink" id="${e.object_id || ""}" >Generate Link</button>
+              <td class='recent-dir'>`
+        if (e.object_id) {
+            a += `<button name="gen_parmaLink" id="${e.object_id || ""}" >Generate Link</button>`
+        }
+        a += `
                   <div>
                       Directory: ${e.dir ? e.dir : "/"}
                   </div>
               </td>
               `;
+        recentList.innerHTML = a
         recentTable.append(recentList);
     });
 };
@@ -145,4 +149,39 @@ const handleLogin = (form) => {
             chrome.storage.local.set({ "user": res })
             return res
         })
+}
+
+const getParmaLink = (docId) => {
+    return fetch("https://api.revvsales.com/api/perma-link", {
+        method: "POST",
+        body: JSON.stringify({ object_id: docId, object_type: "DOC" }),
+        mode: 'cors', // no-cors, *cors, same-origin
+        headers: {
+            'Content-Type': 'application/json',
+            'GrantType': 'password',
+            "AccessToken": user.access_token
+        }
+    }).then(res => res.json())
+}
+
+const handleClickOnRecent = e => {
+    const { name, id } = e.target
+    if (name === "gen_parmaLink" && id) {
+        getParmaLink(id)
+            .then(res => {
+                const { url } = res
+                console.log(res, "parma link")
+                const el = document.createElement('textarea');
+                el.value = url;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                document.getElementById("message").style.display = "flex"
+                setTimeout(() => {
+                    document.getElementById("message").style.display = "none"
+                }, 1000)
+            })
+            .catch(err => console.log(err))
+    }
 }
