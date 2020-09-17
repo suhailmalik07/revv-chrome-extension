@@ -1,11 +1,11 @@
 const recentTable = document.getElementById('recent-table')
-const recentData = [0,1,2,3,4];
+const recentData = [0, 1, 2, 3, 4];
 
-recentData.map(()=>{
+recentData.map(() => {
     const recentList = document.createElement('tr')
     recentList.className = 'recent-list'
-    recentList.innerHTML = 
-    `<td class='recent-items'>
+    recentList.innerHTML =
+        `<td class='recent-items'>
         <button>For Something</button>
         <button class='activities'>Activities</button>
     </td>`
@@ -16,19 +16,27 @@ const toggleRecentActiv = () => {
     const recent = document.getElementById('recent')
     const activity = document.getElementById('activity')
 
-    const recentDisplay = recent.style.display === 'none' ? 'inline':'none'
+    const recentDisplay = recent.style.display === 'none' ? 'inline' : 'none'
     recent.style.display = recentDisplay
 
-    const activityDisplay = activity.style.display === 'none' ? 'inline':'none'
+    const activityDisplay = activity.style.display === 'none' ? 'inline' : 'none'
     activity.style.display = activityDisplay
 
 }
 
-document.getElementById('activityBack').addEventListener('click',toggleRecentActiv)
+document.getElementById('activityBack').addEventListener('click', toggleRecentActiv)
 
 const activityButton = document.getElementsByClassName('activities')
-for(let i = 0; i < activityButton.length; i++){
-    activityButton[i].addEventListener('click',toggleRecentActiv)
+for (let i = 0; i < activityButton.length; i++) {
+    activityButton[i].addEventListener('click', toggleRecentActiv)
+}
+
+
+const getDocs = async () => {
+    await chrome.storage.local.get("docs", (data) => {
+        const { docs } = data
+        return docs
+    })
 }
 
 

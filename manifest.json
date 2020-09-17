@@ -7,12 +7,26 @@
     "background": {
         "scripts": [
             "JS/background.js"
-        ]
+        ],
+        "persistent": false
     },
     "permissions": [
         "storage",
         "https://api.revvsales.com/api/*",
-        "storage"
+        "storage",
+        "tabs",
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*.revvsales.com/documents/*"
+            ],
+            "js": [
+                "JS/contentScript.js"
+            ],
+            "run_at": "document_idle"
+        }
     ],
     "description": "Build an Extension!",
     "manifest_version": 2
