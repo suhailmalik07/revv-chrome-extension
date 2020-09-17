@@ -13,7 +13,7 @@ const getActivities = () => {
     chrome.storage.local.set({ "activities": activities })
     // set notification icon
     setNotification(0)
-
+    displayActivity(activities);
 
     console.log(activities)
   })
@@ -244,7 +244,7 @@ goToRecent.addEventListener("click", toggleToRecent);
 
 function setNotification(count) {
   // set notification icon
-  chrome.browserAction.setBadgeBackgroundColor({ color: "#fe7171" });
+  chrome.browserAction.setBadgeBackgroundColor({ color: [190, 190, 190, 230] });
   count > 0
     ? chrome.browserAction.setBadgeText({ text: `${count}` })
     : chrome.browserAction.setBadgeText({ text: `` })
