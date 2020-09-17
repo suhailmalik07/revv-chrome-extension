@@ -22,6 +22,7 @@ const t = setInterval(() => {
         const docId = url[url.length - 1]
         const docName = document.querySelector(".quotedetails-docname").textContent
         const payload = { url: location.href, docId, docName }
+        console.log(payload)
         saveData(payload)
     }
 }, 1000)
