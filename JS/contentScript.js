@@ -1,13 +1,17 @@
 function saveData(payload) {
     chrome.storage.local.get("docs", (docs) => {
-        let { docs: documentsArr } = docs || { docs: [] }
+        let documentsArr
+        if (docs?.docs) {
+            documentsArr = docs.docs
+        } else {
+            documentsArr = []
+        }
 
         documentsArr = documentsArr.filter(item => item.docId != payload.docId)
         documentsArr.unshift(payload)
 
 
         chrome.storage.local.set({ "docs": documentsArr })
-        console.log(documentsArr)
     })
 }
 
