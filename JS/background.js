@@ -21,11 +21,12 @@ function getActivities() {
         console.log("fetching activities", data)
         let activities = []
         if (data?.activities) {
-            console.log("data already there")
             activities = data.activities
         }
+
+        setNotification(activities.filter(item => !item.status).length)
+
         const lastTime = activities[0]?.timestamp || "2006-01-02T15:04:05.000000Z"
-        console.log(lastTime)
 
         try {
             const { page } = await fetchApi("https://api.revvsales.com/api/folders/?page_num=1&sort_by_doc_num=true")
@@ -43,6 +44,8 @@ function getActivities() {
             activities.unshift(...arr)
 
             chrome.storage.local.set({ "activities": activities })
+            setNotification(activities.filter(item => !item.status).length)
+
         } catch (err) {
             console.log(err)
         }
@@ -62,6 +65,15 @@ async function fetchApi(url) {
     })
         .then(res => res.json())
         .catch(err => console.log(err))
+}
+
+
+function setNotification(count) {
+    // set notification icon
+    chrome.browserAction.setBadgeBackgroundColor({ color: [190, 190, 190, 230] });
+    count > 0
+        ? chrome.browserAction.setBadgeText({ text: `${count}` })
+        : chrome.browserAction.setBadgeText({ text: `` })
 }
 
 getActivities()
