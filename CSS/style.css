@@ -38,7 +38,7 @@ body{
 }
 #activity-table{
     height: 400px;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: block;
 }
 .recent-list, .activity-list{

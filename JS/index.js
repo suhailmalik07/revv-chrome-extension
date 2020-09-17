@@ -65,7 +65,6 @@ const displayActivity = (data) => {
                     <div><b>${
                       e.actor.name
                     }</b> received the email & document for acceptance</div>
-                    <br/>
                     <div><i>${findCurrentTime(timestamp)}</i></div>
                 </td>
                 `;
@@ -84,7 +83,20 @@ const displayActivity = (data) => {
           e.actor.image_url
         } alt='profile_img'/></div>
                     <div>Document sent for acceptance to <b>${arr.join(', ')}</b></div>
-                    <br/>
+                    <div><i>${findCurrentTime(timestamp)}</i></div>
+                </td>
+                `;
+        break;
+        case "DOCUMENT_CREATED":
+        var timestamp = Math.round(Date.parse(e.timestamp) / 1000);
+        activityList.innerHTML = `<td>
+                    <img src='../Resources/activity.png' alt='document'/>
+                </td>
+                <td>
+                    <div><b>${e.actor.name}</b><img src=${
+          e.actor.image_url
+        } alt='profile_img'/></div>
+                    <div><b>Congrats!</b> You created a new document successfully</div>
                     <div><i>${findCurrentTime(timestamp)}</i></div>
                 </td>
                 `;
