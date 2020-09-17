@@ -71,6 +71,9 @@ const toggleToRecent = () => {
   document.getElementById("goToActivity").style.color = "white";
 };
 
+chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230]});
+chrome.browserAction.setBadgeText({text:"?"});
+
 const goToActivity = document.getElementById("goToActivity");
 goToActivity.addEventListener("click", toggleToActivity);
 
