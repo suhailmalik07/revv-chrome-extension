@@ -8,6 +8,32 @@ body{
 #heading{
     text-align: center;
 }
+#form{
+    width: 210px;
+    margin: 60px auto;
+}
+#form input{
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+    background: none;
+    border: 1px solid red;
+    color: white;
+    outline: none;
+    border-radius: 10px;
+}
+#form button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+}
+#form button:hover{
+    background-color: rgb(165, 5, 5);
+}
+#form:last-child{
+    text-align: center;
+}
 #create-clone-document{
     text-align: center;
 }

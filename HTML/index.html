@@ -10,42 +10,66 @@
 
 <body>
     <div id='main'>
-        <h1 style="text-align: center;">REVV SALES</h1>
-        <div id='create-clone-document'>
-            <button>Create Document</button>
-            <button>Clone Document</button>
+        <h1 style="text-align: center;">REVV SHOP</h1>
+        <div id="app">
+            <div id='create-clone-document'>
+                <button>Create Document</button>
+                <button>Clone Document</button>
+            </div>
+            <div id='box'>
+                <div style="display: flex;">
+                    <h2 id="goToRecent">Recent</h2>
+                    <h2 id="goToActivity">Activities</h2>
+                </div>
+                <hr />
+
+                <div id="recent">
+                    <table id='recent-table'></table>
+                </div>
+
+                <div style="display: none;" id='activity'>
+                    <table id="activity-table"></table>
+                </div>
+
+                <!-- coldforce+revvhack@gmail.com
+                Coldforce@1
+                ftal37a3 -->
+
+            </div>
         </div>
-        <div id='box'>
-            <div style="display: flex;">
-                <h2 id="goToRecent">Recent</h2>
-                <h2 id="goToActivity">Activities</h2>
+        <form id="form">
+            <div>
+                <h3>LOGIN FORM</h3>
             </div>
-            <hr/>
-
-            <div id="recent">
-                <table id='recent-table'></table>
+            <div>
+                <label>Email ID</label>
+                <input type="email" name="email" placeholder="Email"/>
             </div>
-
-            <div style="display: none;" id='activity'>
-                <table id="activity-table"></table>
+            <div>
+                <label>Password</label>
+                <input type="password" name="password" id="" placeholder="Password"/>
             </div>
+            <div>
+                <label>ORG_DOMAIN</label>
+                <input type="text" name="org_domain" placeholder="org_domain" name="org_domain"/>
+            </div>
+            <div>
+                <button id="loginBtn">Login</button>
+            </div>
+        </form>
+    </div>
 
-        </div>
-        
 
+
+    <!-- <div id="logoDiv">
+    <h2>RevvSales</h2>
+</div> -->
+    <div id="root">
 
     </div>
 
-    
-
-<!-- <div id="logoDiv">
-    <h2>RevvSales</h2>
-</div> -->
-<div id="root">
-    
-</div>
-
-<script type="text/javascript" src="../JS/index.js"></script>
+    <script src="../JS/App.js"></script>
+    <script type="text/javascript" src="../JS/index.js"></script>
 </body>
 
 </html>
