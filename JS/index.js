@@ -96,7 +96,7 @@ const displayActivity = (data) => {
                     <div><b>${e.actor.name}</b><img src=${
           e.actor.image_url
         } alt='profile_img'/></div>
-                    <div><b>Congrats!</b> You created a new document successfully</div>
+                    <div><b>Congrats!</b> A new document created successfully</div>
                     <div><i>${findCurrentTime(timestamp)}</i></div>
                 </td>
                 `;
