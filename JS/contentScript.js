@@ -11,7 +11,7 @@ function saveData(payload) {
         documentsArr.unshift(payload)
 
 
-        chrome.storage.local.set({ "docs": documentsArr })
+        chrome.storage.local.set({ "docs": documentsArr.slice(0, 5) })
         console.log(documentsArr)
     })
 }

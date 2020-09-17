@@ -42,6 +42,7 @@ function getActivities() {
 
             arr = arr.filter(item => item.event !== "DOCUMENT_OPENED" && new Date(item.timestamp) > new Date(lastTime)).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
             activities.unshift(...arr)
+            activities = activities.slice(0, 25)
 
             chrome.storage.local.set({ "activities": activities })
             setNotification(activities.filter(item => !item.status).length)
@@ -70,7 +71,7 @@ async function fetchApi(url) {
 
 function setNotification(count) {
     // set notification icon
-    chrome.browserAction.setBadgeBackgroundColor({ color: [190, 190, 190, 230] });
+    chrome.browserAction.setBadgeBackgroundColor({ color: "#fe7171" });
     count > 0
         ? chrome.browserAction.setBadgeText({ text: `${count}` })
         : chrome.browserAction.setBadgeText({ text: `` })
