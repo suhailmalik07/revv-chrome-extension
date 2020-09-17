@@ -128,11 +128,7 @@ const displayData = (docs) => {
             <td class='recent-dir'>
                 <button>Generate Link</button>
                 <div>
-<<<<<<< HEAD
                     Directory: ${e.dir ? e.dir : "/"}
-=======
-                    Directory: ${e.dir ? e.dir : '/'}
->>>>>>> a9b8671b448891c489e5d81f78eef261d329a2e7
                 </div>
             </td>
             `;
