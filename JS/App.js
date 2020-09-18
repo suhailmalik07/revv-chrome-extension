@@ -109,12 +109,13 @@ const displayData = (docs) => {
         if (e.object_id) {
             a += `<button name="gen_parmaLink" id="${e.object_id || ""}" >Generate Link</button>`
         }
-        a += `
-                  <div>
-                      Directory: ${e.dir ? e.dir : "/"}
-                  </div>
-              </td>
-              `;
+        if (e.path) {
+            a += `<div>
+                          Directory: ${e.dir ? e.dir : "/"}
+                      </div>`
+
+        }
+        a += `</td>`;
         recentList.innerHTML = a
         recentTable.append(recentList);
     });

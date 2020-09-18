@@ -17,8 +17,10 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
 let user;
 chrome.storage.local.get("user", (data) => {
     user = data?.user || {}
-    console.log(user, "user")
     getActivities()
+    setInterval(() => {
+        getActivities()
+    }, 60000)
 })
 
 // fetch activites
@@ -42,13 +44,14 @@ function getActivities() {
             const objectIdsTmp = promises.map(item => item.Document)
             updateDocs(objectIdsTmp)
 
-            const objectIds = objectIdsTmp.map(item => item.object_id).map(item => fetchApi(`https://api.revvsales.com/api/object-activities/objects/${item}`))
+            const objectIds = objectIdsTmp.map(item => fetchApi(`https://api.revvsales.com/api/object-activities/objects/${item.object_id}`).then(res => res.map(i => ({ ...item, ...i }))))
 
             const Activities = await Promise.all(objectIds)
             let arr = []
             Activities.forEach(act => {
                 arr.push(...act)
             })
+            console.log(arr)
 
             arr = arr.filter(item => item.event !== "DOCUMENT_OPENED" && new Date(item.timestamp) > new Date(lastTime)).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
             activities.unshift(...arr)
@@ -99,7 +102,3 @@ function updateDocs(data) {
         chrome.storage.local.set({ "docs": docs })
     })
 }
-
-setInterval(() => {
-    getActivities()
-}, 60000)
