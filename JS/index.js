@@ -7,7 +7,7 @@ const getDocs = () => {
     return docs;
   });
 };
-chrome.storage.local.set({ "user": {} })
+// chrome.storage.local.set({ "user": {} })
 
 const getActivities = () => {
   chrome.storage.local.get("activities", (data) => {
@@ -71,7 +71,13 @@ function showForm() {
     try {
       user = await handleLogin(e.target)
       console.log(user)
+
+      // send message to load data
+      chrome.runtime.sendMessage({ action: "loggedIn" }, function (response) {
+        renderDOM(user)
+      });
       renderDOM(user)
+
     } catch (err) {
       console.log(err)
     }

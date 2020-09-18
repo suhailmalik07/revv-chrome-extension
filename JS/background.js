@@ -21,7 +21,23 @@ chrome.storage.local.get("user", (data) => {
     setInterval(() => {
         getActivities()
     }, 60000)
+    console.log(user)
 })
+
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message.action == 'loggedIn') {
+        // alert("got it")
+        chrome.storage.local.get("user", (data) => {
+            user = data?.user || {}
+            getActivities()
+            setInterval(() => {
+                getActivities()
+            }, 60000)
+            console.log(user)
+        })
+    }
+});
 
 // fetch activites
 function getActivities() {

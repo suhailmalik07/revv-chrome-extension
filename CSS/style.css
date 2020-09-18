@@ -14,31 +14,6 @@ body {
     text-align: center;
 }
 
-#form{
-    display: table;
-    border-spacing: 10px 10px;
-    margin: auto;
-}
-
-#form > div{
-    display: table-row;
-}
-
-#form input, #form label{
-    display: table-cell;
-}
-
-#form input{
-    /* background: #FF3D00; */
-    background: none;
-    border: 1px solid white;
-    padding: 10px;
-}
-
-#form button{
-    padding: 5px 10px;
-}
-
 #create-clone-document button {
     background-color: rgb(64, 146, 64);
     color: white;
@@ -192,7 +167,35 @@ button, #goToRecent, #goToActivity {
     }
 }
 
-#logo{
+#logo {
     text-decoration: none;
     color: white;
+}
+
+#form {
+    padding: 1rem;
+}
+
+#form label {
+    font-size: 18px;
+}
+
+#form input, #form button {
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    color: white;
+    font-size: 18px;
+}
+
+#form input {
+    background: transparent;
+    border: 1px solid white;
+    padding: 10px;
+    margin-top: 0.5rem;
+}
+
+#form button {
+    padding: 0.5rem 1rem;
+    background-color: #e53935;
 }
