@@ -52,10 +52,11 @@ body {
 }
 
 .recent-list, .activity-list {
-    margin: 40px;
+    margin: 10px 0;
     width: 100%;
     background-color: wheat;
     color: black;
+    display: table;
 }
 
 .recent-list img, .activity-list img {
