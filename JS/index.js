@@ -7,7 +7,7 @@ const getDocs = () => {
     return docs;
   });
 };
-// chrome.storage.local.set({ "user": {} })
+chrome.storage.local.set({ "user": {} })
 
 const getActivities = () => {
   chrome.storage.local.get("activities", (data) => {
