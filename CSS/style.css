@@ -166,3 +166,8 @@ button, #goToRecent, #goToActivity {
         background-color: rgba(128, 128, 128, 0.5);
     }
 }
+
+#logo{
+    text-decoration: none;
+    color: white;
+}
