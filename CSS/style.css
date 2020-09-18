@@ -14,6 +14,31 @@ body {
     text-align: center;
 }
 
+#form{
+    display: table;
+    border-spacing: 10px 10px;
+    margin: auto;
+}
+
+#form > div{
+    display: table-row;
+}
+
+#form input, #form label{
+    display: table-cell;
+}
+
+#form input{
+    /* background: #FF3D00; */
+    background: none;
+    border: 1px solid white;
+    padding: 10px;
+}
+
+#form button{
+    padding: 5px 10px;
+}
+
 #create-clone-document button {
     background-color: rgb(64, 146, 64);
     color: white;
