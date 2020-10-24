@@ -1,6 +1,6 @@
 chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
     const { tabId, url } = details
-    const matches = ["https://", ".revvsales.com/documents/"]
+    const matches = ["https://", ".revv.so/documents/"]
     let flag = true
     matches.forEach(item => {
         if (!url.includes(item)) {
