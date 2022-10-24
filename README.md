@@ -39,3 +39,5 @@ In Activities page, It show all the recent activity for that orginization or use
 
 ## Thanks to
 RevvSales and masai for organizing this awesome hackathon.
+
+PS: This extension will not work as RevvSales has breaking API changes and this is not up to date.
